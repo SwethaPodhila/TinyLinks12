@@ -198,14 +198,6 @@ function Dashboard() {
                   </td>
 
                   <td>
-                    <button
-                      className="btn-small"
-                      onClick={() =>
-                        navigator.clipboard.writeText(`${BASE_URL}/${link.code}`)
-                      }
-                    >
-                      Copy
-                    </button>
 
                     <button
                       className="btn-danger"
