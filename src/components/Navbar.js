@@ -36,38 +36,53 @@ function DashboardNavbar() {
         <div className="container-fluid">
           {/* Left: Logo */}
           <a className="navbar-brand fw-bold text-primary fs-2" href="/">
-            <img
-              src={logo}
-              alt="TinyLinks"
-              className="right-side-image"
-            />
+            <img src={logo} alt="TinyLinks" className="right-side-image" />
           </a>
 
-          {/* Right: User Dropdown */}
-          <div className="dropdown ms-auto position-relative">
-            <button
-              className="btn btn-outline-primary rounded-pill d-flex align-items-center gap-2"
-              onClick={() => setShowDropdown(!showDropdown)}
-            >
-              <FaUserCircle size={22} />
-              <span>{user ? user.name : "User"}</span>
-            </button>
+          {/* Right Section */}
+          <div className="ms-auto d-flex align-items-center gap-3">
+            {/* IF USER NOT LOGGED IN → Show Login + Signup */}
+            {!user && (
+              <>
+                <a href="/register" className="btn btn-outline-primary rounded-pill px-3">
+                  Register
+                </a>
 
-            {showDropdown && (
-              <div
-                className="dropdown-menu dropdown-menu-end show mt-2 shadow-sm rounded-3 p-2"
-                style={{ right: 0, minWidth: "200px" }}
-              >
-                <div className="px-3 py-2 text-center border-bottom">
-                  <strong>{user?.name}</strong>
-                  <div className="text-muted small">{user?.email}</div>
-                </div>
+                <a href="/login" className="btn btn-primary rounded-pill px-3 text-white"
+                  style={{ backgroundColor: "#ff6b00", borderColor: "#ff6b00" }}>
+                  Login
+                </a>
+              </>
+            )}
+
+            {/* IF USER LOGGED IN → Show User Dropdown */}
+            {user && (
+              <div className="dropdown position-relative">
                 <button
-                  className="dropdown-item text-danger fw-semibold text-center mt-1"
-                  onClick={handleLogout}
+                  className="btn btn-outline-primary rounded-pill d-flex align-items-center gap-2"
+                  onClick={() => setShowDropdown(!showDropdown)}
                 >
-                  Logout
+                  <FaUserCircle size={22} />
+                  <span>{user.name}</span>
                 </button>
+
+                {showDropdown && (
+                  <div
+                    className="dropdown-menu dropdown-menu-end show mt-2 shadow-sm rounded-3 p-2"
+                    style={{ right: 0, minWidth: "200px" }}
+                  >
+                    <div className="px-3 py-2 text-center border-bottom">
+                      <strong>{user?.name}</strong>
+                      <div className="text-muted small">{user?.email}</div>
+                    </div>
+                    <button
+                      className="dropdown-item text-danger fw-semibold text-center mt-1"
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -75,31 +90,34 @@ function DashboardNavbar() {
 
         <style>
           {`
-  :root {
-    --bs-primary: #ff6b00 !important;  /* 👈 your new primary color */
-    --bs-primary-rgb: 255, 107, 0 !important;
-  }
-  body {
-    padding-top: 70px; /* Adjust based on navbar height */
-  } 
-  .btn-outline-primary {
-    border-color: var(--bs-primary) !important;
-    color: var(--bs-primary) !important;
-  }
-
-  .btn-outline-primary:hover {
-    background-color: var(--bs-primary) !important;
-    color: #fff !important;
-  }
-
-  .text-primary {
-    color: var(--bs-primary) !important;
-  }
+:root {
+  --bs-primary: #ff6b00 !important;
+  --bs-primary-rgb: 255, 107, 0 !important;
+} 
+body {
+  padding-top: 70px;
+} 
+.btn-outline-primary {
+  border-color: var(--bs-primary) !important;
+  color: var(--bs-primary) !important;
+}
+.btn-outline-primary:hover {
+  background-color: var(--bs-primary) !important;
+  color: #fff !important;
+}
+.btn-primary {
+  background-color: var(--bs-primary) !important;
+  border-color: var(--bs-primary) !important;
+}
+.text-primary {
+  color: var(--bs-primary) !important;
+}
 `}
         </style>
       </nav>
     </>
   );
+
 }
 
 export default DashboardNavbar;

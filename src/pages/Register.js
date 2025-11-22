@@ -20,7 +20,7 @@ function Register() {
     if (password.length < 6) return alert("Password must be at least 6 characters");
 
     try {
-      const res = await axios.post("https://tinylinks12.onrender.com/user/register", form);
+      const res = await axios.post("https://tinylinks-rhy0.onrender.com/user/register", form);
       alert(res.data.msg);
 
       if (res.data.success) {
@@ -44,7 +44,7 @@ function Register() {
 
       if (res.data.token) {
         localStorage.setItem("token", res.data.token);
-        window.location.href = "/dashboard";
+        window.location.href = "/";
       }
     } catch (err) {
       alert(err.response?.data?.msg || "OTP verification failed. Please try again.");
@@ -123,7 +123,7 @@ function Register() {
           {!otpStep && (
             <p className="login-text">
               Already have an account?{" "}
-              <Link to="/">Login</Link>
+              <Link to="/login">Login</Link>
             </p>
           )}
         </div>

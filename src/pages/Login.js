@@ -11,13 +11,13 @@ function Login() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://tinylinks12.onrender.com/user/login",
+        "https://tinylinks-rhy0.onrender.com/user/login",
         form
       );
 
       if (res.data.token) {
         localStorage.setItem("token", res.data.token);
-        window.location.href = "/dashboard";
+        window.location.href = "/";
       }
     } catch (err) {
       alert(err.response?.data?.msg || "Login failed. Please try again.");
