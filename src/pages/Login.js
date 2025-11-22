@@ -11,7 +11,7 @@ function Login() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:5000/user/login",
+        "https://tinylinks12.onrender.com/user/login",
         form
       );
 
